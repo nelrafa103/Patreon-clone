@@ -35,6 +35,9 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   mason: ^0.1.0-dev.28
+  http: ^0.13.4
+  flutter_dotenv: ^5.0.2
+  collection: ^1.16.0
 
 dev_dependencies:
   flutter_test:
