@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:patreonclone/widgets/appbars/BottomBar.dart';
@@ -8,6 +9,7 @@ class Messages extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _Messages();
 }
+
 /*This widget probably wil be empty or without functional work */
 class _Messages extends State<Messages> {
   @override
@@ -25,6 +27,27 @@ class _Messages extends State<Messages> {
                 children: [],
               ))
         ],
+      ),
+    );
+  }
+}
+
+class Chat extends StatefulWidget {
+  const Chat({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => _Chat();
+}
+
+class _Chat extends State<Chat> {
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: const Text("data"),
+      leading: CachedNetworkImage(
+        imageUrl: "",
+        placeholder: (_, __) => const CircularProgressIndicator(),
+        fadeInDuration: const Duration(milliseconds: 0),
       ),
     );
   }
