@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:patreonclone/widgets/appbars/BottomBar.dart';
+import 'package:patreonclone/widgets/appbars/TopBar.dart';
 import 'package:patreonclone/widgets/buttons/Rounded_Button.dart';
 
 import '../models/Button.dart';
 
-class Starting_Screen extends StatefulWidget {
+class Starting extends StatefulWidget {
+  const Starting({Key? key}) : super(key: key);
+
   @override
-  _Starting_ScreenState createState() => _Starting_ScreenState();
+  State<StatefulWidget> createState() => _StartingState();
 }
 
-class _Starting_ScreenState extends State<Starting_Screen>
+class _StartingState extends State<Starting>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   List<Button> buttons = [
@@ -39,6 +43,7 @@ class _Starting_ScreenState extends State<Starting_Screen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
         body: Stack(
       fit: StackFit.expand,
       alignment: Alignment.bottomCenter,
@@ -57,7 +62,8 @@ class _Starting_ScreenState extends State<Starting_Screen>
                 ),
               ),
               Container(
-                margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+                margin:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
                 child: Flex(
                   direction: Axis.vertical,
                   children: [
