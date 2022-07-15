@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class TopBar extends StatefulWidget {
+class TopBar extends StatefulWidget implements PreferredSizeWidget {
   final String title;
   final List<Map<String, dynamic>> aditionalWidget;
   const TopBar({Key? key, required this.title, required this.aditionalWidget})
@@ -9,6 +9,10 @@ class TopBar extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() => _TopBar();
+
+  @override
+  // TODO: implement preferredSize
+  final preferredSize = const Size.fromHeight(kToolbarHeight);
 }
 
 class _TopBar extends State<TopBar> {

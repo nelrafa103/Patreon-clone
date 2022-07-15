@@ -9,7 +9,7 @@ class BottomBar extends StatefulWidget {
 }
 
 class _BottomBar extends State<BottomBar> {
-  late List<BottomNavigationBarItem> list;
+  late List<BottomNavigationBarItem>  list = [];
   List<Map<String, dynamic>> listInfo = [
     {
       "label": "Home page",
@@ -20,7 +20,7 @@ class _BottomBar extends State<BottomBar> {
   ];
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(items: const <BottomNavigationBarItem>[]);
+    return BottomNavigationBar(items: list);
   }
 
   @override
