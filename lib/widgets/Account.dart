@@ -10,15 +10,33 @@ class Account extends StatefulWidget {
 }
 
 class _Account extends State<Account> {
+  List<Option> widgetlist = [];
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    List<Map<String, dynamic>> list = [
+      {'title': 'Mis suscripciones', 'icon': const Icon(Icons.subscriptions)},
+      {"title": 'Configuracion', 'icon': const Icon(Icons.settings)},
+      {'title': 'Colabora', 'icon': const Icon(Icons.question_mark)},
+      {'title': 'Cerrar sesion', 'icon': const Icon(Icons.logout)}
+    ];
+    for (var element in list) {
+      widgetlist.add(Option(
+        title: element['title'],
+        icon: element['icon'],
+      ));
+    }
     return Scaffold(
       bottomNavigationBar: const BottomBar(),
       body: Stack(
         children: [
-          Positioned(
+          Expanded(
               child: ListView(
-            children: [],
+            children: widgetlist,
           ))
         ],
       ),
@@ -27,7 +45,10 @@ class _Account extends State<Account> {
 }
 
 class Option extends StatefulWidget {
-  const Option({Key? key}) : super(key: key);
+  final String title;
+  final Icon icon;
+  const Option({Key? key, required this.title, required this.icon})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _Option();
@@ -36,9 +57,9 @@ class Option extends StatefulWidget {
 class _Option extends State<Option> {
   @override
   Widget build(BuildContext context) {
-    return const ListTile(
-      title: Text("Some text"),
-      leading: Icon(Icons.ac_unit),
+    return   ListTile(
+      title: Text(widget.title),
+      leading: widget.icon
     );
   }
 }
