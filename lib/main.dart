@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patreonclone/tools/Routes.dart';
 import 'package:patreonclone/widgets/Home.dart';
 import 'package:patreonclone/widgets/Starting.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -19,6 +20,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      /* onUnknownRoute: (RouteSettings settings) {
+        return MaterialPageRoute(builder: (context) => )
+      },*/
+      routes: Map.fromEntries(routes.map((r) => MapEntry(r.route, r.builder))),
       theme: ThemeData(
         // This is the theme of your application.
         //

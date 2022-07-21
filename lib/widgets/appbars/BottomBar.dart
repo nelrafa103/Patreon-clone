@@ -9,18 +9,28 @@ class BottomBar extends StatefulWidget {
 }
 
 class _BottomBar extends State<BottomBar> {
-  late List<BottomNavigationBarItem>  list = [];
+  late List<BottomNavigationBarItem> list = [];
   List<Map<String, dynamic>> listInfo = [
     {
       "label": "Home page",
       "icon": const Icon(Icons.web_asset),
+      "route": '/home'
     },
-    {"label": "Search", "icon": const Icon(Icons.email_outlined)},
-    {"label": "Account", "icon": const Icon(Icons.account_circle_outlined)}
+    {
+      "label": "Search",
+      "icon": const Icon(Icons.email_outlined),
+      "route": '/messages'
+    },
+    {
+      "label": "Account",
+      "icon": const Icon(Icons.account_circle_outlined),
+      "route": "/account"
+    }
   ];
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(items: list);
+    return BottomNavigationBar(
+        onTap: (value) => {navigate(value)}, items: list);
   }
 
   @override
@@ -30,5 +40,19 @@ class _BottomBar extends State<BottomBar> {
           icon: element['icon'], label: element["label"]));
     }
     super.initState();
+  }
+
+  void navigate(int option) {
+    switch (option) {
+      case 0:
+        Navigator.pushNamed(context, listInfo[0]["route"]);
+        break;
+      case 1:
+        Navigator.pushNamed(context, listInfo[1]["route"]);
+        break;
+      case 2:
+        Navigator.pushNamed(context, listInfo[2]["route"]);
+        break;
+    }
   }
 }

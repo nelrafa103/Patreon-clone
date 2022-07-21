@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:patreonclone/widgets/appbars/BottomBar.dart';
+import 'package:patreonclone/widgets/messages/UnFound.dart';
 
 class Messages extends StatefulWidget {
   const Messages({Key? key}) : super(key: key);
@@ -12,6 +13,7 @@ class Messages extends StatefulWidget {
 
 /*This widget probably wil be empty or without functional work */
 class _Messages extends State<Messages> {
+  List<Chat> chat_list = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +26,9 @@ class _Messages extends State<Messages> {
               top: 20,
               child: Flex(
                 direction: Axis.horizontal,
-                children: [],
+                children: [if(chat_list.isEmpty)...{
+                  const UnFound(optionalElements: [])
+                }],
               ))
         ],
       ),

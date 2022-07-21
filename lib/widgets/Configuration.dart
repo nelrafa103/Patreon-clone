@@ -27,7 +27,7 @@ class _Configuration extends State<Configuration> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: const BottomBar(),
-      body: Stack(children: []),
+      body: Stack(children: [Positioned(child: Container())]),
     );
   }
 }
