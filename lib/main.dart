@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:patreonclone/tools/Routes.dart';
 import 'package:patreonclone/widgets/Home.dart';
 import 'package:patreonclone/widgets/Starting.dart';
@@ -6,7 +9,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
+  await dotenv.load(fileName: ".env");
   runApp(const MyApp());
+  
+  debugPrint(dotenv.env["RICK_MORTY_EPISODE"]);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

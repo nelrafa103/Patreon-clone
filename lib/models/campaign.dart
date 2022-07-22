@@ -3,13 +3,14 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class Campaign {
-  final String summary;
+  /*final String summary;
   final String createAt;
-  final bool isNsfw;
-  Campaign(this.createAt, this.isNsfw, {required this.summary});
-  Future<Map<String, dynamic>> _fetchAlbum() async {
-    String? patreonUrl = dotenv.env['CAMPAIGN_API'];
-    final response = await http.get(Uri.parse("$patreonUrl"));
+  final bool isNsfw;*/
+
+ // Campaign({/*this.createAt, this.isNsfw, {required this.summary*/});
+  Future<Map<String, dynamic>> _fetchAlbum(int index) async {
+    String? patreonUrl = dotenv.env['RICK_MORTY_CHARACTERS'];
+    final response = await http.get(Uri.parse("$patreonUrl+'/'+ $index"));
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
     } else {
