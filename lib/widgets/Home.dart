@@ -12,7 +12,10 @@ class Home extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _Home();
 }
-
+/*
+ Si no hay respuesta por parte de IT hare uso de 
+ la api de rick and morty link : https://rickandmortyapi.com/documentation/
+*/
 class _Home extends State<Home> {
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:patreonclone/tools/Hooks.dart';
 import 'package:patreonclone/widgets/appbars/BottomBar.dart';
 
 class Configuration extends StatefulWidget {
@@ -11,7 +12,7 @@ class Configuration extends StatefulWidget {
 
 class _Configuration extends State<Configuration> {
   List<Map<String, dynamic>> list = [
-    {'title': 'Configuracion de las notificaciones'},
+    {'title': 'Configuracion de las notificaciones', 'url': ''},
     {
       'title': 'Perfil privado',
       'subtitle': 'Ocultar tus aportaciones',
@@ -23,46 +24,67 @@ class _Configuration extends State<Configuration> {
     {'title': 'Dejar su comentario'},
     {'title': 'Informacion de la aplicacion'}
   ];
+  List<OptionConfig> widgetList = [];
   @override
   Widget build(BuildContext context) {
+    for (var element in list) {
+      widgetList.add(OptionConfig(
+          title: element["title"],
+          subTitle: element['subtitle'],
+          isChangeful: element['switch'],
+          url: element['url']));
+    }
     return Scaffold(
       bottomNavigationBar: const BottomBar(),
-      body: Stack(children: [Positioned(child: Container())]),
+      body: Stack(children: [
+        Expanded(
+          child: ListView(
+            children: widgetList,
+          ),
+        )
+      ]),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 }
 
-class Option extends StatefulWidget {
+class OptionConfig extends StatefulWidget {
   final String title;
   final String? subTitle;
-  final bool isChangeful;
-  const Option(
+  final bool? isChangeful;
+  final String url;
+  const OptionConfig(
       {Key? key,
       required this.title,
       required this.subTitle,
-      required this.isChangeful})
+      required this.isChangeful,
+      required this.url})
       : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _Option();
+  State<StatefulWidget> createState() => _OptionConfig();
 }
 
-class _Option extends State<Option> {
+class _OptionConfig extends State<OptionConfig> {
   bool isSelected = false;
   @override
   Widget build(BuildContext context) {
-    return Flex(
-      direction: Axis.horizontal,
-      children: [
-        Wrap(children: [Text(widget.title), Text(widget.subTitle!)]),
-        if (widget.isChangeful == true) ...{
-          Flexible(
-              child: Switch(
-            onChanged: (value) => true,
-            value: isSelected,
-          ))
-        }
-      ],
-    );
+    if (widget.subTitle != null) {
+      return ListTile(
+        title: Text(widget.title),
+        subtitle: Text(widget.subTitle!),
+      );
+    } else {
+      return ListTile(
+        title: Text(widget.title),
+        onTap: () {
+          redirectTo(url: widget.url, context: context);
+        },
+      );
+    }
   }
 }

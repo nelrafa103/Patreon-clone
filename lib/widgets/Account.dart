@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:patreonclone/widgets/appbars/BottomBar.dart';
 
+import '../tools/Hooks.dart';
+
 class Account extends StatefulWidget {
   const Account({Key? key}) : super(key: key);
 
@@ -19,15 +21,32 @@ class _Account extends State<Account> {
   @override
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> list = [
-      {'title': 'Mis suscripciones', 'icon': const Icon(Icons.subscriptions)},
-      {"title": 'Configuracion', 'icon': const Icon(Icons.settings)},
-      {'title': 'Colabora', 'icon': const Icon(Icons.question_mark)},
-      {'title': 'Cerrar sesion', 'icon': const Icon(Icons.logout)}
+      {
+        'title': 'Mis suscripciones',
+        'icon': const Icon(Icons.subscriptions),
+        'url': '/suscriptions'
+      },
+      {
+        "title": 'Configuracion',
+        'icon': const Icon(Icons.settings),
+        'url': '/configuration'
+      },
+      {
+        'title': 'Colabora',
+        'icon': const Icon(Icons.question_mark),
+        'url': '/home'
+      },
+      {
+        'title': 'Cerrar sesion',
+        'icon': const Icon(Icons.logout),
+        'url': '/home'
+      }
     ];
     for (var element in list) {
       widgetlist.add(Option(
         title: element['title'],
         icon: element['icon'],
+        url: element['url'],
       ));
     }
     return Scaffold(
@@ -47,7 +66,9 @@ class _Account extends State<Account> {
 class Option extends StatefulWidget {
   final String title;
   final Icon icon;
-  const Option({Key? key, required this.title, required this.icon})
+  final String url;
+  const Option(
+      {Key? key, required this.title, required this.icon, required this.url})
       : super(key: key);
 
   @override
@@ -57,9 +78,12 @@ class Option extends StatefulWidget {
 class _Option extends State<Option> {
   @override
   Widget build(BuildContext context) {
-    return   ListTile(
+    return ListTile(
       title: Text(widget.title),
-      leading: widget.icon
+      leading: widget.icon,
+      onTap: () {
+        redirectTo(url: widget.url, context: context);
+      },
     );
   }
 }
